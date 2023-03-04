@@ -17,7 +17,7 @@ fun main() {
 
         // Check if the user's guess is valid.
         if (userGuess == null || userGuess.length != 4 || !game.isValidNumber(userGuess)) {
-            println("Invalid input. Please enter a 4-digit number with no repeating digits.")
+            println("Invalid input. The numbers should not repeat")
             continue
         }
 
@@ -30,7 +30,7 @@ fun main() {
             break
         } else {
             println("$n:$m")
-            println("Enter a 4-digit number again")
+            println("Try again!")
         }
     }
 }
