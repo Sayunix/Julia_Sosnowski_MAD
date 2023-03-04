@@ -51,11 +51,4 @@ class NumberGuessingGame {
 
         return Pair(n, m)
     }
-
-    /**
-     * Checks if the user has guessed the number correctly.
-     */
-    fun hasUserGuessedNumber(): Boolean {
-        return randomNumber?.equals(scanner.nextLine()) == true
-    }
 }
