@@ -6,14 +6,15 @@ fun main() {
 
     // Generate a random 4-digit number for the user to guess.
     game.generateRandomNumber()
-
+    print("Enter a 4-digit number with no repeating digits: ")
     // Ask the user to guess the number until they get it right.
     while (!game.hasUserGuessedNumber()) {
         print("Enter a 4-digit number with no repeating digits: ")
-        val userGuess = scanner.nextLine()
+        System.out.flush()
+        val userGuess = readLine()
 
         // Check if the user's guess is valid.
-        if (userGuess.length != 4 || !game.isValidNumber(userGuess)) {
+        if (userGuess == null || userGuess.length != 4 || !game.isValidNumber(userGuess)) {
             println("Invalid input. Please enter a 4-digit number with no repeating digits.")
             continue
         }

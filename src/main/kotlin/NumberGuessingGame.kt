@@ -43,7 +43,7 @@ class NumberGuessingGame {
         for (i in 0..3) {
             if (randomNumber?.contains(guess[i]) == true) {
                 n++
-                if (guess[i] == randomNumber!![i]) {
+                if (guess[i] == randomNumber?.get(i)) {
                     m++
                 }
             }
@@ -56,6 +56,6 @@ class NumberGuessingGame {
      * Checks if the user has guessed the number correctly.
      */
     fun hasUserGuessedNumber(): Boolean {
-        return randomNumber == scanner.nextLine()
+        return randomNumber?.equals(scanner.nextLine()) == true
     }
 }
