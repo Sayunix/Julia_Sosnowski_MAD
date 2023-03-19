@@ -1,7 +1,6 @@
 import java.util.*
 
 fun main() {
-    val scanner = Scanner(System.`in`)
     val game = NumberGuessingGame()
 
     // Generate a random 4-digit number for the user to guess.
@@ -12,12 +11,12 @@ fun main() {
 
     // Ask the user to guess the number until they get it right.
     while (true) {
-        print("Enter a 4-digit number with no repeating digits: ")
+        println("You may enter a 4-digit number with no repeating numbers: ")
         val userGuess = readLine()
 
         // Check if the user's guess is valid.
         if (userGuess == null || userGuess.length != 4 || !game.isValidNumber(userGuess)) {
-            println("Invalid input. The numbers should not repeat")
+            println("Invalid input. The numbers should not repeat! Try again.")
             continue
         }
 
