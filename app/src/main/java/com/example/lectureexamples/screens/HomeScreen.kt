@@ -12,6 +12,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.*
@@ -85,6 +86,7 @@ fun MyList(navController: NavController = rememberNavController(),
 
 @Composable
 fun MovieRow(movie: Movie, onItemClick: (String) -> Unit = {}) {
+    var showDetails by remember { mutableStateOf(false) } // remember state variable to toggle expandable section
     Card(modifier = Modifier
         .fillMaxWidth()
         .padding(5.dp)
@@ -121,9 +123,23 @@ fun MovieRow(movie: Movie, onItemClick: (String) -> Unit = {}) {
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(movie.title, style = MaterialTheme.typography.h6)
-                Icon(
-                    imageVector = Icons.Default.KeyboardArrowUp,
-                    contentDescription = "Show details")
+                //Task 3 implemented here
+                IconButton(
+                    onClick = { showDetails = !showDetails },
+                    modifier = Modifier.size(32.dp)
+                ) {
+                    Icon(
+                        imageVector = if (showDetails) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
+                        contentDescription = if (showDetails) "Hide details" else "Show details"
+                    )
+                }
+            }
+            if (showDetails) {
+                Column(modifier = Modifier.padding(5.dp)) {
+                    Text("Director: ${movie.director}")
+                    Text("Release Year: ${movie.year}")
+                    Text("Plot: ${movie.plot}")
+                }
             }
         }
     }
