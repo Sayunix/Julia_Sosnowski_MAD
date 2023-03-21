@@ -13,6 +13,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,14 +35,29 @@ fun HomeScreen(navController: NavController) {
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colors.background
     ) {
+        var showMenu by remember { mutableStateOf(false) } // remember state variable to toggle the DropDownMenu
         Column {
-            Greeting()
-            Text(
-                style = MaterialTheme.typography.h6,
-                text= "Movie List"
+            TopAppBar(
+                title = { Text(text = "Movie List") },
+                actions = {
+                    IconButton(onClick = { showMenu = true }) {
+                        Icon(Icons.Filled.MoreVert, contentDescription = null)
+                    }
+                    //Task 2 Learning Diary 2
+                    DropdownMenu(
+                        expanded = showMenu,
+                        onDismissRequest = { showMenu = false }
+                    ) {
+                        DropdownMenuItem(onClick = { /* Handle favorites click */ }) {
+                            Text("Favorites")
+                        }
+                    }
+                }
             )
+            Greeting()
             MyList(navController)
         }
+
         //MyList()
         //Greeting()
         //WelcomeText(modifier = Modifier.padding(16.dp), text = "welcome to my app!")

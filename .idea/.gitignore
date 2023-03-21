@@ -1,15 +1,3 @@
-*.iml
-.gradle
-/local.properties
-/.idea/.idea/caches
-/.idea/.idea/libraries
-/.idea/.idea/modules.xml
-/.idea/.idea/workspace.xml
-/.idea/.idea/navEditor.xml
-/.idea/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
+# Default ignored files
+/shelf/
+/workspace.xml
