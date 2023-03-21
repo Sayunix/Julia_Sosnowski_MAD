@@ -1,14 +1,11 @@
 package com.example.lectureexamples.screens
 
 import android.util.Log
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CornerSize
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
@@ -18,14 +15,15 @@ import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.lectureexamples.R
+import coil.compose.AsyncImage
+import coil.compose.rememberImagePainter
 import com.example.lectureexamples.models.Movie
 import com.example.lectureexamples.models.getMovies
 
@@ -87,7 +85,8 @@ fun MyList(navController: NavController = rememberNavController(),
 @Composable
 fun MovieRow(movie: Movie, onItemClick: (String) -> Unit = {}) {
     var showDetails by remember { mutableStateOf(false) } // remember state variable to toggle expandable section
-    Card(modifier = Modifier
+    Card(
+        modifier = Modifier
         .fillMaxWidth()
         .padding(5.dp)
         .clickable { onItemClick(movie.id) },
@@ -99,8 +98,9 @@ fun MovieRow(movie: Movie, onItemClick: (String) -> Unit = {}) {
                 .height(150.dp)
                 .fillMaxWidth()
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.avatar2),
+                // Loading image using Coil
+                AsyncImage(
+                    model = movie.images[1],
                     contentDescription = "Movie Poster",
                     contentScale = ContentScale.Crop
                 )
@@ -145,20 +145,7 @@ fun MovieRow(movie: Movie, onItemClick: (String) -> Unit = {}) {
     }
 }
 
-@Preview
-@Composable
-fun WelcomeText(modifier: Modifier = Modifier, text: String = "default") {
-    Row(
-        modifier = modifier
-            .padding(16.dp)
-            .background(Color.Blue)
-            .fillMaxWidth()
-    ) {
-        Text(modifier = modifier, text = "Hola")
-        Text(text = text)
-    }
 
-}
 
 @Preview
 @Composable
