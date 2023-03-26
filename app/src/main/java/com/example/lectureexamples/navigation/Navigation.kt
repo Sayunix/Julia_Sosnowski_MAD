@@ -41,6 +41,9 @@ fun Navigation(){
                 type = NavType.StringType })
         ) {
             Log.d("args", it.arguments?.getString("movieTitle").toString())
-            DetailScreen(navController = navController, movieTitle = it.arguments?.getString("movieTitle").toString()) }
+            DetailScreen(
+                navController = navController,
+                movieTitle = it.arguments?.getString("movieTitle").toString(),
+                movieId = it.arguments?.getString("movieId").toString() ) }
     }
 }
