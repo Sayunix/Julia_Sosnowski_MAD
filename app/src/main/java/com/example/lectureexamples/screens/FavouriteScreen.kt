@@ -17,7 +17,7 @@ import com.example.lectureexamples.models.Movie
 import com.example.lectureexamples.models.getMovies
 
 @Composable
-fun FavoriteScreenAppBar(text: String, navController: NavController) {
+fun SimpleAppBar(text: String, navController: NavController) {
     var showMenu by remember {
         mutableStateOf(false)
     }
@@ -26,6 +26,7 @@ fun FavoriteScreenAppBar(text: String, navController: NavController) {
             .fillMaxWidth(),
     ) {
         IconButton(onClick = {
+
             navController.navigateUp()
         }) {
             Icon(
@@ -62,7 +63,7 @@ fun FavoriteScreenAppBar(text: String, navController: NavController) {
 fun FavouriteScreen(navController: NavController) {
 
     Column {
-        FavoriteScreenAppBar(navController = navController, text = "Favorites")
+        SimpleAppBar(navController = navController, text = "Favorites")
 
         val movies = getMovies().take(4)
 

@@ -15,6 +15,7 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.lectureexamples.models.Movie
 import com.example.lectureexamples.models.getMovies
+import com.example.lectureexamples.navigation.Screen
 
 
 fun getMovieDetails(movieId: String?): Movie {
@@ -52,7 +53,7 @@ fun DetailScreen(navController: NavController, movieTitle: String, movieId: Stri
                     onDismissRequest = { showMenu = false }
                 ) {
                     DropdownMenuItem(onClick = {
-                        navController.navigate("favourites") {
+                        navController.navigate(Screen.Detail(movieTitle, movieId).route) {
                             popUpTo("home") {
                                 inclusive = true
                             }
