@@ -75,9 +75,12 @@ fun MyList(navController: NavController = rememberNavController(),
             )  { movieId ->
                 Log.d("MyList", "item clicked $movieId")
                 // navigate to detailscreen
-                navController.navigate("detail/$movieId")
+                navController.navigate("detail/"+movie.title) //This was my error for 5 hours, to speak to the title you need to put movie.title of the list here
             }
+
+
         }
+
     }
 }
 

@@ -1,5 +1,6 @@
 package com.example.lectureexamples.navigation
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -14,17 +15,17 @@ fun Navigation(){
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = "home") {
+
         composable(route = "home") {
             HomeScreen(navController)
         }
 
         composable(
-            route = "detail/{movieId}",
-            arguments = listOf(navArgument("movieId"){
-                type = NavType.StringType
-            })
-        ) {backStackEntry ->
-            DetailScreen(navController, movieId = backStackEntry.arguments?.getString("movieId"))
-        }
+            route = "detail/{movieTitle}",
+            arguments = listOf(navArgument("movieTitle"){
+                type = NavType.StringType })
+        ) {
+            Log.d("args", it.arguments?.getString("movieTitle").toString())
+            DetailScreen(navController = navController, movieTitle = it.arguments?.getString("movieTitle").toString()) }
     }
 }
