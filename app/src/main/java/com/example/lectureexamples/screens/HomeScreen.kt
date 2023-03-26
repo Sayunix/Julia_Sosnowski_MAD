@@ -47,8 +47,14 @@ fun HomeScreen(navController: NavController) {
                         expanded = showMenu,
                         onDismissRequest = { showMenu = false }
                     ) {
-                        DropdownMenuItem(onClick = { /* Handle favorites click */ }) {
-                            Text("Favorites")
+                        DropdownMenuItem(onClick = {
+                            navController.navigate("favourites") {
+                                popUpTo("home") {
+                                    inclusive = true
+                                }
+                            }
+                            showMenu = false }) {
+                            Text("Favourites")
                         }
                     }
                 }

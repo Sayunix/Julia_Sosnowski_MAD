@@ -23,6 +23,7 @@ import androidx.navigation.navArgument
 import coil.compose.AsyncImage
 import com.example.lectureexamples.models.Movie
 import com.example.lectureexamples.screens.DetailScreen
+import com.example.lectureexamples.screens.FavouriteScreen
 import com.example.lectureexamples.screens.HomeScreen
 
 @Composable
@@ -31,9 +32,8 @@ fun Navigation(){
 
     NavHost(navController = navController, startDestination = "home") {
 
-        composable(route = "home") {
-            HomeScreen(navController)
-        }
+        composable(route = "home") { HomeScreen(navController) }
+        composable("favourites") { FavouriteScreen(navController) }
 
         composable(
             route = "detail/{movieTitle}",
@@ -45,5 +45,9 @@ fun Navigation(){
                 navController = navController,
                 movieTitle = it.arguments?.getString("movieTitle").toString(),
                 movieId = it.arguments?.getString("movieId").toString() ) }
+
+
     }
+
+
 }
